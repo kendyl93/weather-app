@@ -19,7 +19,7 @@ executors:
     description: |
       Node 14 runtime environment
     docker:
-      - image: circleci/node:<<parameters.node>>
+      - image: circleci/node:14
     parameters:
       node:
         default: "14"
