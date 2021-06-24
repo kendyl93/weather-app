@@ -32,11 +32,20 @@ jobs:
       - run:
           name: Tests run
           command: yarn test
+  deploy:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:12.18.2
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - heroku/deploy-via-git
 workflows:
   pipeline:
     jobs:
       - build_and_test
-      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+      - deploy: # Use the pre-configured job, deploy-via-git
           app-name: $HEROKU_PRODUCTION_APP_NAME
           requires:
             - build_and_test
