@@ -1,49 +1,8 @@
 version: 2.1
+orbs:
+  heroku: circleci/heroku@0.0.10
 jobs:
   build:
-    docker:
-      - image: circleci/node:14.17.0-browsers
-
-    working_directory: ~/repo
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run:
-          name: Install dependencies
-          command: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-            - ~/.npm
-            - ~/.cache
-          key: v1-dependencies-{{ checksum "package.json" }}
-  lint:
-    docker:
-      - image: circleci/node:14.17.0-browsers
-
-    working_directory: ~/repo
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run:
-          name: Install dependencies
-          command: yarn install
-
-      - run:
-          name: Lint check
-          command: yarn lint
-  test:
     docker:
       - image: circleci/node:14.17.0-browsers
 
@@ -73,14 +32,20 @@ jobs:
       - run:
           name: Tests run
           command: yarn test
-
+deploy:
+  jobs:
+    - build
+    - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+        app-name: HEROKU_PRODUCTION_APP_NAME
+        requires:
+          - build
+        filters:
+          branches:
+            only: main
 workflows:
   build_and_test:
     jobs:
       - build
-      - lint:
+      - deploy:
           requires:
             - build
-      - test:
-          requires:
-            - lint
