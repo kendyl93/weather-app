@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableHeader snapshot test should match base snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-tableHeader-1"
+    data-testid="table-header"
+  >
+    <div />
+    <p
+      class="MuiTypography-root MuiTypography-body1"
+    >
+      Low
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body1"
+    >
+      Hight
+    </p>
+  </div>
+</DocumentFragment>
+`;
