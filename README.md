@@ -1,4 +1,4 @@
-# Instructions on how to run the ap
+# Instructions on how to run the app
 
 ## Install dependencies(only for the first time)
 
