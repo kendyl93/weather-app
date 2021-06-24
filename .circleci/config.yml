@@ -46,7 +46,6 @@ workflows:
     jobs:
       - build_and_test
       - deploy: # Use the pre-configured job, deploy-via-git
-          app-name: $HEROKU_PRODUCTION_APP_NAME
           requires:
             - build_and_test
           filters:
