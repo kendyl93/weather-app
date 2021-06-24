@@ -32,20 +32,14 @@ jobs:
       - run:
           name: Tests run
           command: yarn test
-deploy:
-  jobs:
-    - build
-    - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-        app-name: HEROKU_PRODUCTION_APP_NAME
-        requires:
-          - build
-        filters:
-          branches:
-            only: main
 workflows:
-  build_and_test:
+  pipeline:
     jobs:
       - build
-      - deploy:
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          app-name: $HEROKU_PRODUCTION_APP_NAME
           requires:
             - build
+          filters:
+            branches:
+              only: main
