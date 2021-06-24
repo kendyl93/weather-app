@@ -9,7 +9,6 @@ const App = () => {
   return (
     <Page>
       <div data-testid="app-page">
-        <h1>test</h1>
         <Route exact path="/">
           <Redirect to="/weather" />
         </Route>
