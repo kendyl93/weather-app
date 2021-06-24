@@ -14,3 +14,13 @@ workflows:
       - react/coverage:
           requires:
             - react/install
+executors:
+  default:
+    description: |
+      Node 14 runtime environment
+    docker:
+      - image: circleci/node:<<parameters.node>>
+    parameters:
+      node:
+        default: "14"
+        type: string
