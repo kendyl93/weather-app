@@ -8,6 +8,7 @@ import Page from "./components/Page";
 const App = () => {
   return (
     <Page>
+      <h1>aa</h1>
       <div data-testid="app-page">
         <Route exact path="/">
           <Redirect to="/weather" />

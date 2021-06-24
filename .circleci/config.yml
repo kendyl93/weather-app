@@ -40,3 +40,6 @@ workflows:
           app-name: $HEROKU_PRODUCTION_APP_NAME
           requires:
             - build_and_test
+          filters:
+            branches:
+              only: main
