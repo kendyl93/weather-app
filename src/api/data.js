@@ -1,17 +1,18 @@
-import axios from "axios"
-import ENV from "../env"
+import axios from "axios";
+import ENV from "../env";
 
 const instance = axios.create({
   baseURL: "https://api.openweathermap.org/data/2.5",
-})
+});
 instance.interceptors.request.use(
   (config) => {
-    config.url = `${config.url}&units=metric&appid=${ENV.API_KEY}`
-    return config
+    console.log({ ENV });
+    config.url = `${config.url}&units=metric&appid=${ENV.REACT_APP_API_KEY}`;
+    return config;
   },
   function (error) {
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
-)
+);
 
-export default instance
+export default instance;

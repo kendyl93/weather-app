@@ -1,12 +1,17 @@
-import axios from "axios"
+import axios from "axios";
 
 export const addStationEndpoint = async (station) =>
-  await axios.post("http://localhost:4000/api/stations", station)
+  await axios.post(
+    "http://api.openweathermap.org/data/3.0/stations?appid=71fb96228421b4944f1b51e799b1e87e",
+    station
+  );
 
 export const deleteStationEndpoint = async (id) =>
-  await axios.delete(`http://localhost:4000/api/stations/${id}`)
+  await axios.delete(
+    `http://api.openweathermap.org/data/3.0/stations?appid=71fb96228421b4944f1b51e799b1e87e/${id}`
+  );
 
 export const fetchStationsEndpoint = async () =>
   await axios.get(
-    "http://api.openweathermap.org/data/3.0/stations?appid=d205e1b1959769a0b07b981d2c123252"
-  )
+    "https://api.openweathermap.org/data/3.0/stations?appid=71fb96228421b4944f1b51e799b1e87e"
+  );
