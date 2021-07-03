@@ -6,7 +6,6 @@ const instance = axios.create({
 });
 instance.interceptors.request.use(
   (config) => {
-    console.log({ ENV });
     config.url = `${config.url}&units=metric&appid=${ENV.REACT_APP_API_KEY}`;
     return config;
   },
