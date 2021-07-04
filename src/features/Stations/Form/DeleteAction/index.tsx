@@ -1,27 +1,10 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/styles";
 import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
 import DeleteActionProps from "./types";
+import useStyles from "./styles";
 import { selectStationLoading } from "../../../../store/weatherStations/selectors";
 import Loading from "../../../../components/Loading";
-
-const useStyles = makeStyles(() => ({
-  buttonWrapper: {
-    color: "#333",
-    transition: "color .15s ease-in",
-
-    "&:hover": {
-      color: "red",
-      cursor: "pointer",
-    },
-  },
-  loading: {
-    width: "20px !important",
-    height: "20px !important",
-    color: "red",
-  },
-}));
 
 const DeleteAction: FunctionComponent<DeleteActionProps> = ({ action }) => {
   const classes = useStyles();
