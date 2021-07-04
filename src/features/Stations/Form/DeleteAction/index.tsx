@@ -1,12 +1,12 @@
-import { MouseEvent } from "react";
-import PropTypes from "prop-types";
+import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
 import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import { selectStationLoading } from "../../../store/weatherStations/selectors";
-import Loading from "../../../components/Loading";
+import DeleteActionProps from "./types";
+import { selectStationLoading } from "../../../../store/weatherStations/selectors";
+import Loading from "../../../../components/Loading";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   buttonWrapper: {
     color: "#333",
     transition: "color .15s ease-in",
@@ -23,11 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type Props = {
-  action: (event: MouseEvent) => void;
-};
-
-const DeleteAction = ({ action }: Props) => {
+const DeleteAction: FunctionComponent<DeleteActionProps> = ({ action }) => {
   const classes = useStyles();
   const loading = useSelector(selectStationLoading);
 
@@ -38,10 +34,6 @@ const DeleteAction = ({ action }: Props) => {
       <DeleteForeverOutlinedIcon data-testid="delete-button" onClick={action} />
     </div>
   );
-};
-
-DeleteAction.propTypes = {
-  action: PropTypes.func,
 };
 
 export default DeleteAction;

@@ -1,11 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { useDispatch } from "react-redux"
-import { removeStationWithLoading } from "../../../store/weatherStations/actionCreators"
-import { makeStyles } from "@material-ui/styles"
-import { Typography } from "@material-ui/core"
-import Header from "./Header"
-import DeleteAction from "../Form/DeleteAction"
+import React from "react";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { removeStationWithLoading } from "../../../store/weatherStations/actionCreators";
+import { makeStyles } from "@material-ui/styles";
+import { Typography } from "@material-ui/core";
+import Header from "./Header";
+import DeleteAction from "../Form/DeleteAction";
 
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {
@@ -45,14 +45,14 @@ const useStyles = makeStyles((theme) => ({
       textOverflow: "ellipsis",
     },
   },
-}))
+}));
 
 const handleDeleteStation = (id) => (dispatch) => () =>
-  removeStationWithLoading(id)(dispatch)
+  removeStationWithLoading(id)(dispatch);
 
 const StationsList = ({ stations = [] }) => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <div className={classes.tableWrapper} data-testid="station-list">
@@ -69,11 +69,11 @@ const StationsList = ({ stations = [] }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 StationsList.propTypes = {
   stations: PropTypes.array,
-}
+};
 
-export default StationsList
+export default StationsList;
