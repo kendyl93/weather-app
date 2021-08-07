@@ -1,37 +1,37 @@
-import React, { useState } from "react"
-import { useDispatch } from "react-redux"
-import { makeStyles } from "@material-ui/styles"
-import TextField from "@material-ui/core/TextField"
-import EndAdornment from "./EndAdornment"
-import { fetchCurrentWeatherWithLoading } from "../../../../store/currentWeather/actionCreators"
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { makeStyles } from "@material-ui/styles";
+import TextField from "@material-ui/core/TextField";
+import EndAdornment from "./EndAdornment";
+import { fetchCurrentWeather } from "../../../../store/currentWeather/actionCreators";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
     width: "100%",
     marginBottom: "16px",
   },
-}))
+}));
 
 const onFormSubmit = (cityName, dispatch) => async (event) => {
-  event.preventDefault()
+  event.preventDefault();
 
-  fetchCurrentWeatherWithLoading(cityName)(dispatch)
-}
+  fetchCurrentWeather(cityName)(dispatch);
+};
 
 const onInputChange = (set) => (event) => {
-  event.preventDefault()
+  event.preventDefault();
   const {
     target: { value = "" },
-  } = event || {}
+  } = event || {};
 
-  set(value)
-}
+  set(value);
+};
 
 const SearchInput = () => {
-  const classes = useStyles()
-  const [cityName, setCityName] = useState("")
-  const dispatch = useDispatch()
-  const onCityNameInputChange = onInputChange(setCityName)
+  const classes = useStyles();
+  const [cityName, setCityName] = useState("");
+  const dispatch = useDispatch();
+  const onCityNameInputChange = onInputChange(setCityName);
 
   return (
     <form onSubmit={onFormSubmit(cityName, dispatch)}>
@@ -44,7 +44,7 @@ const SearchInput = () => {
         }}
       />
     </form>
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;

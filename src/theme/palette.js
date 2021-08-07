@@ -1,9 +1,3 @@
-const colorPalette = ["#4098EF", "#2A9D8F"]
+const palette = {};
 
-export default {
-  default: { main: "#C3C2C6" },
-  primary: {
-    contrastText: "#fff",
-    main: colorPalette[0],
-  },
-}
+export default palette;

@@ -1,19 +1,12 @@
-import { currentWeatherEndpoint, forecastEndpoint } from "./endpoints";
+import { currentWeatherEndpoint } from "./endpoints";
 
 import {
   FETCH_CURRENT_CITY_DATA_SUCCESS,
   CURRENT_WEATHER_ERROR,
-  FETCH_FORECAST_SUCCESS,
 } from "./actionTypes";
-import withLoading from "../utils";
 
 export const fetchCityDataSuccess = (data) => ({
   type: FETCH_CURRENT_CITY_DATA_SUCCESS,
-  payload: data,
-});
-
-export const fetchForecastSuccess = (data) => ({
-  type: FETCH_FORECAST_SUCCESS,
   payload: data,
 });
 
@@ -22,30 +15,14 @@ export const currentWeatherError = (error) => ({
   payload: error,
 });
 
-export const fetchCurrentWeatherWithLoading =
-  (cityName) => async (dispatch) => {
-    const fetchCurrentWeather = (cityName) => async () => {
-      try {
-        const response = await currentWeatherEndpoint(cityName);
-        const { data } = response || {};
-        const { coord: { lon, lat } = {} } = data;
-
-        fetchForecast(lon, lat)(dispatch);
-        dispatch(fetchCityDataSuccess(data));
-      } catch (error) {
-        dispatch(currentWeatherError(error.toString()));
-      }
-    };
-
-    withLoading(dispatch, fetchCurrentWeather(cityName));
-  };
-
-export const fetchForecast = (lat, lon) => async (dispatch) => {
+export const fetchCurrentWeather = (cityName) => async (dispatch) => {
   try {
-    const response = await forecastEndpoint(lat, lon);
+    const response = await currentWeatherEndpoint(cityName);
+    const { data } = response || {};
+    console.log({ data });
 
-    dispatch(fetchForecastSuccess(response?.data));
+    dispatch(fetchCityDataSuccess(data));
   } catch (error) {
-    currentWeatherError(error.toString());
+    dispatch(currentWeatherError(error.toString()));
   }
 };

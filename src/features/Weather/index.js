@@ -1,11 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import CurrentWeather from "./CurrentWeather";
-import { useSelector } from "react-redux";
-import LocationMap from "./CurrentWeather/Map/LocationMap";
-import { selectCurrentCity } from "../../store/currentWeather/selectors";
 import { makeStyles } from "@material-ui/styles";
-import { MAP_ZOOM } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
   currentWeatherContainer: {
@@ -29,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Weather = () => {
   const classes = useStyles();
-  const currentCity = useSelector(selectCurrentCity);
 
   return (
     <Grid
@@ -39,13 +34,6 @@ const Weather = () => {
     >
       <Grid item md={6} xs={12}>
         <CurrentWeather />
-      </Grid>
-      <Grid item md={6} classes={{ root: classes.mapContainer }}>
-        <LocationMap
-          lat={currentCity?.coord?.lat}
-          lon={currentCity?.coord?.lon}
-          zoom={MAP_ZOOM}
-        />
       </Grid>
     </Grid>
   );

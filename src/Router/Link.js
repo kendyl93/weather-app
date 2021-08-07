@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { makeStyles } from "@material-ui/styles"
-import { NavLink } from "react-router-dom"
-import { useMediaQuery, useTheme } from "@material-ui/core"
-import Typography from "@material-ui/core/Typography"
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/styles";
+import { NavLink } from "react-router-dom";
+import { useMediaQuery, useTheme } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -55,12 +55,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "16px",
     },
   },
-}))
+}));
 
 const Link = ({ to, children, Icon }) => {
-  const classes = useStyles()
-  const theme = useTheme()
-  const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"))
+  const classes = useStyles();
+  const theme = useTheme();
+  const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <NavLink to={to} className={classes.link} activeClassName={classes.active}>
@@ -69,13 +69,13 @@ const Link = ({ to, children, Icon }) => {
         <Typography classes={{ root: classes.label }}>{children}</Typography>
       </div>
     </NavLink>
-  )
-}
+  );
+};
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
-  Icon: PropTypes.node,
-}
+  Icon: PropTypes.any,
+};
 
-export default Link
+export default Link;
